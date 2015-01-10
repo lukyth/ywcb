@@ -33,7 +33,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="/search">EXPLORE</a></li>            
+            <li><a href="/search">EXPLORE</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <form class="navbar-form navbar-left" role="search" action="/search">
@@ -45,7 +45,6 @@
             {% if auth_check() %}
             <li><a href="/u/{{auth_user().id}}">{{auth_user().display_name}}</a></li>
             <li class="navbar-accent"><a href="/track/create">NEW TRACK</a></li>
-            {% endif %}
             <li><a href="/logout">LOG OUT</a></li>
             {% else %}
             <li><a href="/login">SIGN IN</a></li>
