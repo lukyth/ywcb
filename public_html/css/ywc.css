@@ -76,6 +76,8 @@ a.secondary{color:#e4bf22;}
 	height:64px;
 	margin:5px;
 	background-color:#aaa;
+	background-image:url('/img/avatar.svg');
+	background-size:cover;
 	display:inline-block;
 }
 
@@ -85,6 +87,8 @@ a.secondary{color:#e4bf22;}
 	margin:2px;
 	background-color:#aaa;
 	display:inline-block;
+	background-image:url('/img/avatar.svg');
+	background-size:cover;
 	vertical-align:middle;
 }
 
@@ -202,4 +206,8 @@ a.secondary{color:#e4bf22;}
 	.indexdeco{
 		display:none;
 	}
+}
+
+.img-hover:hover{
+	opacity:0.7;
 }

@@ -1,0 +1,42 @@
+{% extends 'base.twig' %}
+
+{% block title %}{{track.name}}{% endblock %}
+
+{% block content %}
+	<div class="container pad-section-lg">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Jamming "Some Jam"</h1>
+				<div class="txt-center">
+					<br>
+					<img class="img-responsive img-center img-hover hidden-xs" src="img/rec.svg" style="width:200px">
+					<img class="img-responsive img-center img-hover visible-xs" src="img/rec.svg" style="width:150px">
+					<br><br>
+					<img class="img-responsive" src="img/sound.svg" style="width:100%">
+					<b>By</b>
+					<div class="mockup-avt-sm" style="vertical-align:middle"></div>
+					from
+					<div class="mockup-avt-xs" style="vertical-align:middle"></div>
+					<div class="mockup-avt-xs" style="vertical-align:middle"></div>
+					's <a href="">JAM.</a>
+					<br><br>
+					<a href="mix" class="btn btn-primary">Next Step</a>
+					<br><br>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block script %}
+	<script>
+	var tracks = [
+		{% for item in track.parents %}
+		[{{item.file|json_encode|raw}}, {{item.shift|json_encode|raw}}],
+		{% endfor %}
+		[{{track.file|json_encode|raw}}, {{track.shift|json_encode|raw}}],
+	];
+	var show_data = false;
+	</script>
+	<script src="/js/player.js"></script>
+{% endblock %}
