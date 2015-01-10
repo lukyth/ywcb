@@ -23,6 +23,8 @@ Route::get('/t/{id}', array('as' => 'track', 'uses' => 'TrackController@show'));
 Route::match(array('GET', 'POST', 'PUT'), '/t/{id}/jam', array('as' => 'jam_track', 'uses' => 'TrackController@create'));
 Route::match(array('GET', 'POST', 'PUT'), '/t/{id}/edit', array('as' => 'edit_track', 'uses' => 'TrackController@edit'));
 
+Route::get('/search', array('as' => 'search', 'uses' => 'SearchController@search'));
+
 Route::get('/{name}', function($name)
 {
 	return Twig::render($name);

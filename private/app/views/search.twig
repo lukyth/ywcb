@@ -1,0 +1,8 @@
+{% import "trackmacro.twig" as trackm %}
+<form action="" method="GET">
+	<input type="text" name="q" value="{{search}}">
+	<input type="submit">
+</form>
+{% for track in tracks %}
+{{trackm.display_track(track)}}
+{% endfor %}

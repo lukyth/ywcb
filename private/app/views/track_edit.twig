@@ -10,9 +10,7 @@
 </h1>
 
 {{BootstrapForm.open()|raw}}
-<div id="player"></div>
-<a href="#" id="play">play</a>
-<a href="#" id="stop">stop</a>
+<div id="player" data-player="{{track.get_player_data()|json_encode}}"></div>
 
 {{BootstrapForm.input('number', 'shift', 'Shift', track.shift, {'id': 'shift'})|raw}}
 negative shift = skip track seconds<br>positive shift = play after other track start
