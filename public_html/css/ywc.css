@@ -72,6 +72,10 @@ a.secondary{color:#e4bf22;}
 	padding-top:30px;
 }
 
+.pad-section-lg-ni .row{
+	padding-top:30px;
+}
+
 .pad-section-lg .row:first-child{
 	padding-top:50px;
 }
