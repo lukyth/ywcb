@@ -8,7 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
+    'FakeCommand' => $baseDir . '/app/commands/FakeCommand.php',
     'Frozennode\\Administrator\\AdminController' => $vendorDir . '/frozennode/administrator/src/controllers/AdminController.php',
+    'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'LoginController' => $baseDir . '/app/controllers/LoginController.php',
     'Phase1Migration' => $baseDir . '/app/database/migrations/2015_01_10_020621_phase1migration.php',
@@ -16,6 +18,8 @@ return array(
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
     'Track' => $baseDir . '/app/models/Track.php',
     'TrackController' => $baseDir . '/app/controllers/TrackController.php',
+    'TrackRel' => $baseDir . '/app/models/TrackRel.php',
+    'Trackshiftmigration' => $baseDir . '/app/database/migrations/2015_01_10_044401_trackshiftmigration.php',
     'User' => $baseDir . '/app/models/User.php',
     'UserMigration' => $baseDir . '/app/database/migrations/2015_01_09_100006_usermigration.php',
     'Whoops\\Module' => $vendorDir . '/filp/whoops/src/deprecated/Zend/Module.php',
