@@ -32,11 +32,13 @@
 	<div class="soundinfo txt-center" style="vertical-align:middle">
 		<b>By</b>
 		<div class="mockup-avt-sm" style="vertical-align:middle; background-image: url({{track.user().first().gravatar()}}); background-size: contain;"></div>
+		{% if track.parents.count > 0 %}
 		from
 		{% for item in track.parents %}
 		<div class="mockup-avt-xs" style="vertical-align:middle; background-image: url({{item.user().first().gravatar()}}); background-size: contain;"></div>
 		{% endfor %}
 		's <a href="/t/{{track.parents().first().id}}">JAM.</a>
+		{% endif %}
 	</div>
 	<br><br>
 	<p>{{track.description}}</p>

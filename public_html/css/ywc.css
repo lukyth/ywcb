@@ -1,5 +1,25 @@
-body{
-	padding-top:50px;
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+	padding-top: 50px;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -70px;
+  padding: 0 0 70px;
+}
+
+#footer {
+  height: 70px;
 }
 
 .container-fluid{
@@ -69,6 +89,10 @@ a.secondary{color:#e4bf22;}
 }
 
 .pad-section-lg .row{
+	padding-top:30px;
+}
+
+.pad-section-lg-ni .row{
 	padding-top:30px;
 }
 

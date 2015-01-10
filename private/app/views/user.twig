@@ -1,7 +1,35 @@
 {% import "trackmacro.twig" as trackm %}
 
-<h1>{{user.display_name}}</h1>
+{% extends 'base.twig' %}
 
-{% for track in tracks %}
-{{trackm.display_track(track)}}
-{% endfor %}
+{% block title %}{{user.display_name}}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="profile col-sm-8">
+        <img src="" alt="" class="profile-image">
+        <div class="description">
+          <h1>{{user.display_name}}</h1>
+          <div class="social">
+            <button type="button" class="btn btn-default">Subscribe</button>
+            <button type="button" class="btn btn-default btn-sm">Message</button>
+          </div>
+        </div>
+      </div>
+      <div class="skill-container col-sm-4">
+        <h2>Skill</h2>
+        <div class="skill">
+          <img src="" alt="" class="guitar">
+          <img src="" alt="" class="bass">
+          <img src="" alt="" class="drum">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for track in tracks %}
+        {{trackm.display_track(track)}}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -23,12 +23,14 @@
 
 			<div class="col-sm-4">
 
+				{% if track.parents().count() > 0 %}
 				<h2>Previous Version</h2>
 				{{trackm.display_track(track.parents().first())}}
 				<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
 					<a href="" class="btn btn-primary">see more &raquo;</a>
 				</div>
 				<br>
+				{% endif %}
 				<h2>Related Jams</h2>
 				{% include 'track-list-xs.twig' %}
 				{% include 'track-list-xs.twig' %}
