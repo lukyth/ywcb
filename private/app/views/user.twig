@@ -28,9 +28,13 @@
     </div>
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2">
+      <div class="txt-center">
+      Start a jam session,<br>
+      <a href="rec" class="btn btn-primary">CREATE NEW TRACK</a></div>
       {% for track in tracks %}
         {{trackm.display_track(track)}}
       {% endfor %}
+
     </div>
     </div>
   </div>

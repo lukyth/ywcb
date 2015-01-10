@@ -6,21 +6,25 @@
 	<div class="container pad-section-lg record-page">
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>Jamming "Some Jam"</h1>
+				<h1>Jamming "{{track.name}}"</h1>
 				<div class="txt-center">
 					<br>
-					<img class="img-responsive img-center img-hover hidden-xs" src="img/rec.svg" style="width:200px">
-					<img class="img-responsive img-center img-hover visible-xs" src="img/rec.svg" style="width:150px">
+					<img class="img-responsive img-center img-hover hidden-xs" src="/img/rec.svg" style="width:200px">
+					<img class="img-responsive img-center img-hover visible-xs" src="/img/rec.svg" style="width:150px">
 					<br><br>
-					<img class="img-responsive soundwave" src="img/sound.svg" style="width:100%">
+					<img class="img-responsive soundwave" src="/img/sound.svg" style="width:100%">
+
 					<b>By</b>
-					<div class="mockup-avt-sm" style="vertical-align:middle"></div>
+					<div class="mockup-avt-sm" style="vertical-align:middle; background-image: url({{track.user().first().gravatar()}}); background-size: contain;"></div>
+					{% if track.parents.count > 0 %}
 					from
-					<div class="mockup-avt-xs" style="vertical-align:middle"></div>
-					<div class="mockup-avt-xs" style="vertical-align:middle"></div>
-					's <a href="">JAM.</a>
+					{% for item in track.parents %}
+					<div class="mockup-avt-xs" style="vertical-align:middle; background-image: url({{item.user().first().gravatar()}}); background-size: contain;"></div>
+					{% endfor %}
+					's <a href="/t/{{track.parents().first().id}}">JAM.</a>
+					{% endif %}
 					<br><br>
-					<a href="mix" class="btn btn-primary">Next Step</a>
+					<a href="/t/{{track.id}}/metadata" class="btn btn-primary">Next Step</a>
 					<br><br>
 				</div>
 			</div>

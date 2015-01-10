@@ -12,4 +12,13 @@ class UserController extends BaseController {
 			App::abort(404);
 		}
 	}
+
+	public function feed(){
+		if(!Auth::check()){
+			return Redirect::intended('/');	
+		}
+		return View::make('myfeed', array(
+			'tracks' => Track::orderBy('created_at', 'desc')->get(),
+		));
+	}
 }
