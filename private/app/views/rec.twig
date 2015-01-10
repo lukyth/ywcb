@@ -18,7 +18,7 @@ Upload track
 					<br><br>
 					<img class="img-responsive soundwave" src="/img/sound.svg" style="width:100%">
 
-					<b>By</b>
+					{% if track %}<b>By</b>
 					<div class="mockup-avt-sm" style="vertical-align:middle; background-image: url({{track.user().first().gravatar()}}); background-size: contain;"></div>
 					{% if track.parents.count > 0 %}
 					from
@@ -27,8 +27,9 @@ Upload track
 					{% endfor %}
 					's <a href="/t/{{track.parents().first().id}}">JAM.</a>
 					{% endif %}
+					{% endif %}
 					<br><br>
-					<a href="{% if track %}/t/{{track.id}}/mix{%else%}/track/mix{%endif%}" class="btn btn-primary">Next Step</a>
+					<a href="{% if track %}/t/{{track.id}}/mix{%else%}/track/create{%endif%}" class="btn btn-primary">Next Step</a>
 					<br><br>
 				</div>
 			</div>
