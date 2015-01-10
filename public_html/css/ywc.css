@@ -122,3 +122,18 @@ a.secondary{color:#e4bf22;}
 .musician-full *{
 	display:inline-block;
 }
+
+.pc10{width:10%;}
+.pc20{width:20%;}
+.pc30{width:30%;}
+.pc40{width:40%;}
+.pc50{width:50%;}
+.pc60{width:60%;}
+.pc70{width:70%;}
+.pc80{width:80%;}
+.pc90{width:90%;}
+.pc100{width:100%;}
+
+.img-center{
+	margin: 0 auto;
+}
