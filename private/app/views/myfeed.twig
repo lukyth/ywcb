@@ -13,7 +13,7 @@
 				</div>
 				<div class="col-sm-4 hidden-xs">
 					<div class="txt-center">
-						<a href="user" class="txt-center">
+						<a href="/u/{{auth_user().id}}" class="txt-center">
 							<div class="mockup-avt-sm" style="width:150px; height:150px; background-image:url({{auth_user().gravatar()}}); background-size:contain;"></div>
 							<br><b>{{auth_user().display_name}}</b>
 						</a>
@@ -42,7 +42,7 @@
 					</form>
 
 					<h2>Trending Jams</h2>
-					{% for track in tracks %}
+					{% for track in tracks|slice(0,3) %}
 					{{trackm.display_track(track)}}
 					{% endfor %}
 					<div class="txt-center" style="margin-top:10px; margin-bottom:10px">

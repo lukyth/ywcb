@@ -8,7 +8,7 @@ Upload track
 
 {% block content %}
 
-<div class="container pad-section-lg record-page">
+<div class="container pad-section-lg track-create-page">
 	<div class="row">
 		<div class="col-sm-12">
 			<h1>{% if jam %}Jamming "{{model.name}}"{% else %}Upload track{% endif %}</h1><br>
@@ -21,10 +21,17 @@ Upload track
 			{% endif %}
 
 			{{BootstrapForm.open({'files': true, 'model': model, 'update': 'jam_track', 'store': 'create_track'})|raw}}
+			<div class="form-item clearfix">
 			{{BootstrapForm.text('name', 'Track name')|raw}}
+			</div>
+			<div class="form-item clearfix">
 			{{BootstrapForm.textarea('description', 'Description')|raw}}
+			</div>
+			<div class="form-item clearfix">
 			{{BootstrapForm.input('file', 'file', 'Track file', {'accept':'audio/*'})|raw}}
 			<div class="block-help">Only MP3 is supported</div>
+			</div>
+			<div class="form-item clearfix instrument">
 			{{BootstrapForm.radios('instrument', 'Instrument', {
 				'Bass': 'Bass',
 				'Guitar': 'Guitar',
@@ -33,14 +40,30 @@ Upload track
 				'Synth': 'Synth',
 				'Other': 'Other'
 			}, 'Bass')|raw}}
+			</div>
+			<div class="form-item clearfix permission">
 			{{BootstrapForm.radios('permission', 'Permission', [
 				'Free to Jam',
 				'Ask to jam',
 				'No jam'
 			], 0)|raw}}
+			</div>
 			{{BootstrapForm.submit('Create')|raw}}
 			{{BootstrapForm.close()|raw}}
 		</div>
 	</div>
 </div>
+
+{% endblock %}
+
+{% block script %}
+	<script>
+		$(document).ready(function() {
+			$(".track-create-page .radio label input:checked").parent().addClass("active");
+			$(".track-create-page .radio label").click(function() {
+				$(this).closest(".form-item").find(".active").removeClass("active");
+				$(this).addClass("active");
+			});
+		})
+	</script>
 {% endblock %}
