@@ -5,8 +5,9 @@
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8">
-				<h1 class="title">{{track.name}}</h1>
+			<div class="col-sm-12">
+				{% include 'track-main.twig' %}
+				<!-- <h1 class="title">{{track.name}}</h1>
 				<div class="track">
 					<div class="player">
 						<p id="player"></p>
@@ -27,66 +28,33 @@
 					<div class="description">
 						<p>{{track.description}}</p>
 					</div>
-				</div>
+				</div> -->
+			</div>
+		</div>
 
-				<div class="history">
-					<h2>History</h2>
-					{% for item in track.parents %}
-					<a href="/t/{{item.id}}">{{item.name}}</a>
-					<div class="list clearfix">
-						<div class="player col-sm-4">
-						</div>
-						<div class="people col-sm-4">
-							{% for grandfather in item.parents %}
-							{{grandfather.user().first().display_name}},
-							{% endfor %}
-							{{item.user().first().display_name}}
-						</div>
-						<div class="button-container col-sm-4">
-							<a href="/t/{{item.id}}/jam" class="btn btn-default btn-xs">JAM</a>
-						</div>
-					</div>
-					{% endfor %}
-				</div>
-
-				<div class="comment">
-					<h2>Comment</h2>
-					<div class="list clearfix">
-						<img src="" alt="">
-						<p>Comment 1</p>
-					</div>
-					<div class="list clearfix">
-						<img src="" alt="">
-						<p>Comment 2</p>
-					</div>
-					<div class="list clearfix">
-						<img src="" alt="">
-						<p>Comment 3</p>
-					</div>
-				</div>
+		<div class="row">
+			<div class="col-sm-8">
+				<h2>Comments</h2>
+				{% include 'comment.twig' %}
+				{% include 'comment.twig' %}
+				{% include 'comment.twig' %}
+				{% include 'comment.twig' %}
+				{% include 'comment.twig' %}
 			</div>
 
 			<div class="col-sm-4">
-				<div class="musician">
-					<h2>Musicians</h2>
-					{% for item in track.parents %}
-					<div class="list clearfix">
-						<img src="" alt="" class="img-thumbnail pull-left">
-						<p>{{item.user().first().display_name}}</p>
-					</div>
-					{% endfor %}
-					<div class="list clearfix">
-						<img src="" alt="" class="img-thumbnail pull-left">
-						<p>{{track.user().first().display_name}}</p>
-					</div>
-				</div>
 
-				<div class="relate">
-					<h2>Related</h2>
-					<div class="player">player1</div>
-					<div class="player">player2</div>
-					<div class="player">player3</div>
-					<div class="player">player4</div>
+				<h2>Previous Version</h2>
+				{% include 'track-list-xs.twig' %}
+				<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
+					<a href="" class="btn btn-primary">see more &raquo;</a>
+				</div>
+				<br>
+				<h2>Related Jams</h2>
+				{% include 'track-list-xs.twig' %}
+				{% include 'track-list-xs.twig' %}
+				<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
+					<a href="" class="btn btn-primary">see more &raquo;</a>
 				</div>
 			</div>
 		</div>
