@@ -1,0 +1,39 @@
+{% if session_get('message') %}
+{{session_get('message')}}
+{% endif %}
+{% if session_get('error') %}
+{{session_get('error')}}
+{% endif %}
+
+<h1>
+	Jamming {{model.name}}
+</h1>
+
+{{BootstrapForm.open()|raw}}
+<div id="player"></div>
+<a href="#" id="play">play</a>
+<a href="#" id="stop">stop</a>
+
+{{BootstrapForm.input('number', 'shift', 'Shift', track.shift, {'id': 'shift'})|raw}}
+negative shift = skip track seconds<br>positive shift = play after other track start
+{{BootstrapForm.submit()|raw}}
+{{BootstrapForm.close()|raw}}
+
+  <script>
+var tracks = [
+	{% for item in track.parents %}
+	[{{item.file|json_encode|raw}}, {{item.shift|json_encode|raw}}],
+	{% endfor %}
+	[{{track.file|json_encode|raw}}, {{track.shift|json_encode|raw}}],
+];
+var show_data = true;
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/js/player.js"></script>
+<script>
+$("#shift").change(function(){
+	console.log(this.value);
+	$("#player audio:last").get(0)._shift = this.value;
+	$("#stop").click();
+});
+</script>
