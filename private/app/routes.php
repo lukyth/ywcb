@@ -13,16 +13,17 @@
 
 Route::get('/', function()
 {
-	return Twig::render('hello', array(
-		'group' => 'B'
-	));
+	return Twig::render('index');
 });
 
-Route::get('/login', 'LoginController@login');
-Route::post('/login', 'LoginController@login');
+Route::match(array('GET', 'POST'), '/login', array('as' => 'login', 'uses' => 'LoginController@login'));
 
-Route::get('/register', 'LoginController@register');
-Route::post('/register', 'LoginController@register');
+Route::match(array('GET', 'POST'), '/register', array('as' => 'register', 'uses' => 'LoginController@register'));
+
+Route::match(array('GET', 'POST'), '/track/create', array('as' => 'create_track', 'uses' => 'TrackController@create'));
+Route::get('/t/{id}', array('as' => 'track', 'uses' => 'TrackController@show'));
+
+Route::match(array('GET', 'POST', 'PUT'), '/t/{id}/jam', array('as' => 'jam_track', 'uses' => 'TrackController@create'));
 
 Route::get('/{name}', function($name)
 {

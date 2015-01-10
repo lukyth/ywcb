@@ -4,10 +4,10 @@
 	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Track</title>
+  <title>{{track.name}}</title>
 
   <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,80 +16,49 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8">
-				<h1 class="title">Title</h1>
+				<h1 class="title">{{track.name}}</h1>
 				<div class="track">
-					<div class="player"></div>
+					<div class="player">
+						<p id="player"></p>
+						<a href="#" id="play">play</a>
+						<a href="#" id="stop">stop</a>
+					</div>
 					<div class="social clearfix">
 						<button type="button" class="btn btn-default btn-xs like pull-left">Like!</button>
 						<button type="button" class="btn btn-default btn-xs share pull-left">Share!</button>
 						<button type="button" class="btn btn-default btn-xs subscribe pull-left">Subscribe!</button>
-						<button type="button" class="btn btn-default jam pull-right">JAM</button>
+						<a href="/t/{{track.id}}/jam" class="btn btn-default jam pull-right">JAM</a>
 					</div>
 					<div class="description">
-						<p>This is a description.</p>
+						<p>{{track.description}}</p>
 					</div>
 				</div>
 
 				<div class="history">
 					<h2>History</h2>
+					{% for item in track.parents %}
+					<a href="/t/{{item.id}}">{{item.name}}</a>
 					<div class="list clearfix">
 						<div class="player col-sm-4">
 						</div>
 						<div class="people col-sm-4">
-							<div class="p">
-								<img src="" alt="" class="profile-image">
-								<img src="" alt="" class="badge guitar">
-							</div>
-							<div class="p">
-								<img src="" alt="" class="profile-image">
-								<img src="" alt="" class="badge guitar">
-							</div>
-							<div class="p">
-								<img src="" alt="" class="profile-image">
-								<img src="" alt="" class="badge guitar">
-							</div>
+							{% for grandfather in item.parents %}
+							{{grandfather.user().first().display_name}}, 
+							{% endfor %}
+							{{item.user().first().display_name}}
 						</div>
 						<div class="button-container col-sm-4">
-							<button class="btn btn-default btn-xs">JAM</button>
+							<a href="/t/{{item.id}}/jam" class="btn btn-default btn-xs">JAM</a>
 						</div>
 					</div>
-					<div class="list clearfix">
-						<div class="player col-sm-4">
-						</div>
-						<div class="people col-sm-4">
-							<div class="p">
-								<img src="" alt="" class="profile-image">
-								<img src="" alt="" class="badge guitar">
-							</div>
-							<div class="p">
-								<img src="" alt="" class="profile-image">
-								<img src="" alt="" class="badge guitar">
-							</div>
-						</div>
-						<div class="button-container col-sm-4">
-							<button class="btn btn-default btn-xs">JAM</button>
-						</div>
-					</div>
-					<div class="list clearfix">
-						<div class="player col-sm-4">
-						</div>
-						<div class="people col-sm-4">
-							<div class="p">
-								<img src="" alt="" class="profile-image">
-								<img src="" alt="" class="badge guitar">
-							</div>
-						</div>
-						<div class="button-container col-sm-4">
-							<button class="btn btn-default btn-xs">JAM</button>
-						</div>
-					</div>
+					{% endfor %}
 				</div>
 
 				<div class="comment">
@@ -112,21 +81,15 @@
 			<div class="col-sm-4">
 				<div class="musician">
 					<h2>Musicians</h2>
+					{% for item in track.parents %}
 					<div class="list clearfix">
 						<img src="" alt="" class="img-thumbnail pull-left">
-						<p>Musician 1</p>
+						<p>{{item.user().first().display_name}}</p>
 					</div>
+					{% endfor %}
 					<div class="list clearfix">
 						<img src="" alt="" class="img-thumbnail pull-left">
-						<p>Musician 2</p>
-					</div>
-					<div class="list clearfix">
-						<img src="" alt="" class="img-thumbnail pull-left">
-						<p>Musician 3</p>
-					</div>
-					<div class="list clearfix">
-						<img src="" alt="" class="img-thumbnail pull-left">
-						<p>Musician 4</p>
+						<p>{{track.user().first().display_name}}</p>
 					</div>
 				</div>
 
@@ -144,5 +107,60 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="js/bootstrap.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+
+  <script>
+(function(){
+
+'use strict';
+
+// i'm in a rush so sloppy coding
+
+var tracks = [
+	{% for item in track.parents %}
+	[{{item.file|json_encode|raw}}, {{item.shift|json_encode|raw}}],
+	{% endfor %}
+	[{{track.file|json_encode|raw}}, {{track.shift|json_encode|raw}}],
+];
+
+var players = [];
+
+tracks.forEach(function(v){
+	var player = $("<audio>").attr({
+		'controls': false,
+		'preload': true,
+		'src': v[0]
+	}).appendTo('#player').get(0);
+	player._shift = v[1];
+	players.push(player);
+});
+
+$("#play").click(function(){
+	players.forEach(function(item){
+		item.pause();
+		item.currentTime = Math.max(0, -item._shift);
+		if(item._shift > 0){
+			item.timeout = setTimeout(function(){
+				console.log('play');
+				item.play();
+			}, item._shift * 1000);
+		}else{
+			item.play();
+		}
+	});
+	return false;
+});
+
+$("#stop").click(function(){
+	players.forEach(function(item){
+		clearTimeout(item.timeout);
+		item.pause();
+	});
+	return false;
+});
+
+
+})();
+</script>
 </html>
