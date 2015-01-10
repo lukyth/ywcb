@@ -2,7 +2,7 @@
 {% import "trackmacro.twig" as trackm %}
 {% extends 'base.twig' %}
 {% block content %}
-	<div class="row txt-white bg-primary" style="height:400px; background-image:url('../img/cover.png')">
+	<div class="row txt-white bg-primary hero" style="height:400px; background-image:url('/img/headcover.png'); background-position:center;">
 		<div class="container-fluid" style="padding-top:100px;">
 			<div class="col-xs-12">
 				<h1>Play your part, jam in your style.</h1>
@@ -36,6 +36,7 @@
 					{% for track in tracks %}
 					{{trackm.display_track(track)}}
 					{% endfor %}
+					
 					<div class="txt-center">
 						<br>
 						<br>
@@ -82,7 +83,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row txt-white bg-primary" style="margin-top:90px; padding-top:40px; padding-bottom:80px;">
+	<div class="row txt-white bg-primary" style="margin-top:90px; padding-top:40px; padding-bottom:80px; background-image:url('/img/headcover.png'); background-position:center;">
 		<div class="container-fluid pad-section-lg">
 			<div class="row">
 				<div class="col-xs-12 txt-center">
