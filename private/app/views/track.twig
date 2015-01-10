@@ -34,7 +34,12 @@
 						<button type="button" class="btn btn-default btn-xs like pull-left">Like!</button>
 						<button type="button" class="btn btn-default btn-xs share pull-left">Share!</button>
 						<button type="button" class="btn btn-default btn-xs subscribe pull-left">Subscribe!</button>
+						{% if track.permission == 0 %}
 						<a href="/t/{{track.id}}/jam" class="btn btn-default jam pull-right">JAM</a>
+						{% endif %}
+						{% if track.user == auth_user().id %}
+						<a href="/t/{{track.id}}/edit" class="btn btn-default pull-right">Edit</a>
+						{% endif %}
 					</div>
 					<div class="description">
 						<p>{{track.description}}</p>
@@ -111,56 +116,13 @@
 
 
   <script>
-(function(){
-
-'use strict';
-
-// i'm in a rush so sloppy coding
-
 var tracks = [
 	{% for item in track.parents %}
 	[{{item.file|json_encode|raw}}, {{item.shift|json_encode|raw}}],
 	{% endfor %}
 	[{{track.file|json_encode|raw}}, {{track.shift|json_encode|raw}}],
 ];
-
-var players = [];
-
-tracks.forEach(function(v){
-	var player = $("<audio>").attr({
-		'controls': false,
-		'preload': true,
-		'src': v[0]
-	}).appendTo('#player').get(0);
-	player._shift = v[1];
-	players.push(player);
-});
-
-$("#play").click(function(){
-	players.forEach(function(item){
-		item.pause();
-		item.currentTime = Math.max(0, -item._shift);
-		if(item._shift > 0){
-			item.timeout = setTimeout(function(){
-				console.log('play');
-				item.play();
-			}, item._shift * 1000);
-		}else{
-			item.play();
-		}
-	});
-	return false;
-});
-
-$("#stop").click(function(){
-	players.forEach(function(item){
-		clearTimeout(item.timeout);
-		item.pause();
-	});
-	return false;
-});
-
-
-})();
+var show_data = false;
 </script>
+<script src="/js/player.js"></script>
 </html>

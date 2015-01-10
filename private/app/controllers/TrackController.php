@@ -9,7 +9,11 @@ class TrackController extends BaseController {
 		}
 		$model = null;
 		if($id){
-			$model = Track::find($id);
+			$model = Track::findOrFail($id);
+			if($model->permission != 0 && $model->user != Auth::id()){
+				Session::flash('error', 'This track does not allow jamming');
+				return Redirect::to('t/'.$model->id.'/jam');
+			}
 		}
 		if(Request::isMethod('post') || Request::isMethod('put')){
 			$validator = Validator::make(
@@ -36,15 +40,18 @@ class TrackController extends BaseController {
 
 				$track->save();
 
+				$target = '/t/' . $track->id;
+
 				// copy parent tree
 				if($model){
 					foreach($model->parents() as $item){
 						$track->parents()->save($item);
 					}
 					$track->parents()->save($model);
+					$target = '/t/'.$track->id.'/edit';
 				}
 
-				return Redirect::intended('/t/' . $track->id);
+				return Redirect::intended($target);
 			}else{
 				if($model){
 					$target = 't/'.$model->id.'/jam';
@@ -69,6 +76,39 @@ class TrackController extends BaseController {
 		}catch(Illuminate\Database\Eloquent\ModelNotFoundException $e){
 			App::abort(404);
 		}
+	}
+
+	public function edit($id){
+		if(!Auth::check()){
+			Session::flash('error', 'Please login');
+			return Redirect::to('login');
+		}
+		$model = Track::findOrFail($id);
+		if($model->user != Auth::id()){
+			Session::flash('error', 'You does not own this track');
+			return Redirect::to('t/'.$model->id.'/jam');
+		}
+
+		if(Request::isMethod('post') || Request::isMethod('put')){
+			$validator = Validator::make(
+				Input::all(),
+			    array(
+			    	'shift' => 'required|numeric'
+			    )
+			);
+			if($validator->passes()){
+				$model->shift = Input::get('shift');
+				$model->save();
+
+				return Redirect::intended('/t/' . $model->id);
+			}else{
+				return Redirect::to('t/'.$model->id.'/edit')->withErrors($validator);
+			}
+		}
+
+		return View::make('track_edit', array(
+			'track' => $model,
+		));
 	}
 
 }

@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return Twig::render('index');
-});
+Route::get('/', array('as' => 'index', 'uses' => 'HomeController@home'));
 
 Route::match(array('GET', 'POST'), '/login', array('as' => 'login', 'uses' => 'LoginController@login'));
 
@@ -24,6 +21,7 @@ Route::match(array('GET', 'POST'), '/track/create', array('as' => 'create_track'
 Route::get('/t/{id}', array('as' => 'track', 'uses' => 'TrackController@show'));
 
 Route::match(array('GET', 'POST', 'PUT'), '/t/{id}/jam', array('as' => 'jam_track', 'uses' => 'TrackController@create'));
+Route::match(array('GET', 'POST', 'PUT'), '/t/{id}/edit', array('as' => 'edit_track', 'uses' => 'TrackController@edit'));
 
 Route::get('/{name}', function($name)
 {

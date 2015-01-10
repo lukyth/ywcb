@@ -14,7 +14,7 @@ class Trackshiftmigration extends Migration {
 	{
 		Schema::table('tracks', function(Blueprint $table)
 		{
-			$table->integer('shift')->default(0);
+			$table->double('shift')->default(0);
 		});
 	}
 
