@@ -40,7 +40,13 @@ class TrackController extends BaseController {
 	}
 
 	public function show($id){
-		Track::findOrFail($id);
+		try{
+			return View::make('track', array(
+				'track' => Track::findOrFail($id)
+			));
+		}catch(Illuminate\Database\Eloquent\ModelNotFoundException $e){
+			App::abort(404);
+		}
 	}
 
 }

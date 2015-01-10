@@ -27,6 +27,7 @@ class LoginController extends BaseController {
 				$user = new User;
 				$user->email = Input::get('email');
 				$user->password = Hash::make(Input::get('password'));
+				$user->display_name = $user->email;
 				$user->save();
 				Session::flash('message', 'Registered successfully');
 				return Redirect::intended('/login');
