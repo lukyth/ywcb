@@ -42,7 +42,7 @@
 					</form>
 
 					<h2>Trending Jams</h2>
-					{% for track in tracks %}
+					{% for track in tracks|slice(0,3) %}
 					{{trackm.display_track(track)}}
 					{% endfor %}
 					<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
