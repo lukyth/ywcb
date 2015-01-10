@@ -21,11 +21,11 @@ a, a:visited {
   text-decoration:none;
 }
 
-h1,
+/*h1,
 h2,
 p {
   text-align: left;
-}
+}*/
 
 h1 {
   font-size: 32px;

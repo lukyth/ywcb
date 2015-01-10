@@ -7,7 +7,9 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"rcrowe/twigbridge": "0.6.*",
-		"watson/bootstrap-form": "0.8.*"
+		"watson/bootstrap-form": "0.8.*",
+		"frozennode/administrator": "dev-master",
+		"fzaninotto/faker": "1.4.0"
 	},
 	"autoload": {
 		"classmap": [

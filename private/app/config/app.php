@@ -122,7 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'TwigBridge\ServiceProvider',
-		'Watson\BootstrapForm\BootstrapFormServiceProvider'
+		'Watson\BootstrapForm\BootstrapFormServiceProvider',
+		'Frozennode\Administrator\AdministratorServiceProvider',
 
 	),
 

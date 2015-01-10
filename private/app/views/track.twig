@@ -1,34 +1,38 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Track</title>
+{% extends 'base.twig' %}
 
-  <!-- Bootstrap -->
+{% block title %}{{track.name}}{% endblock %}
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
-  <link rel="stylesheet" type="text/css" href="css/ywc.css">
-</head>
-<body>
-	{% include 'navbar.twig' %}
-	<div class="container-fluid">
+{% block content %}
+	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
 				{% include 'track-main.twig' %}
+				<!-- <h1 class="title">{{track.name}}</h1>
+				<div class="track">
+					<div class="player">
+						<p id="player"></p>
+						<a href="#" id="play">play</a>
+						<a href="#" id="stop">stop</a>
+					</div>
+					<div class="social clearfix">
+						<button type="button" class="btn btn-default btn-xs like pull-left">Like!</button>
+						<button type="button" class="btn btn-default btn-xs share pull-left">Share!</button>
+						<button type="button" class="btn btn-default btn-xs subscribe pull-left">Subscribe!</button>
+						{% if track.permission == 0 %}
+						<a href="/t/{{track.id}}/jam" class="btn btn-default jam pull-right">JAM</a>
+						{% endif %}
+						{% if track.user == auth_user().id %}
+						<a href="/t/{{track.id}}/edit" class="btn btn-default pull-right">Edit</a>
+						{% endif %}
+					</div>
+					<div class="description">
+						<p>{{track.description}}</p>
+					</div>
+				</div> -->
 			</div>
 		</div>
-		<div class="row">
 
+		<div class="row">
 			<div class="col-sm-8">
 				<h2>Comments</h2>
 				{% include 'comment.twig' %}
@@ -39,6 +43,7 @@
 			</div>
 
 			<div class="col-sm-4">
+
 				<h2>Previous Version</h2>
 				{% include 'track-list-xs.twig' %}
 				<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
@@ -54,9 +59,17 @@
 			</div>
 		</div>
 	</div>
+{% endblock %}
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="js/bootstrap.min.js"></script>
-</html>
+{% block script %}
+	<script>
+	var tracks = [
+		{% for item in track.parents %}
+		[{{item.file|json_encode|raw}}, {{item.shift|json_encode|raw}}],
+		{% endfor %}
+		[{{track.file|json_encode|raw}}, {{track.shift|json_encode|raw}}],
+	];
+	var show_data = false;
+	</script>
+	<script src="/js/player.js"></script>
+{% endblock %}

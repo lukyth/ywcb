@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.css">
+
+    {% block head %}
+      <title>{% block title %}{% endblock %} - MIXIC</title>
+      <link rel="stylesheet" href="/css/ywc.css">
+    {% endblock %}
+
+  </head>
+  <body>
+
+    {% block nav %}
+    <!-- <h1>Play your part, jam in your style.</h1> -->
+    <nav class="navbar navbar-primary navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="#">MIXIC</a>
+        </div>
+        <ul class="nav navbar-nav navbar-left">
+        <li><a href="/search">EXPLORE</a></li>
+        {% if auth_check() %}
+        <li><a href="/track/create">NEW TRACK</a></li>
+        {% endif %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if auth_check() %}
+        <li class="navbar-accent"><a href="/u/{{auth_user().id}}">{{auth_user().display_name}}</a></li>
+        <li><a href="/logout">LOG OUT</a></li>
+        {% else %}
+        <li><a href="/login">SIGN IN</a></li>
+        <li class="navbar-accent"><a href="/register">SIGN UP</a></li>
+        {% endif %}
+      </ul>
+      </div>
+    </nav>
+    {% endblock %}
+
+    <div id="content">{% block content %}{% endblock %}</div>
+
+    {% block footer %}
+      <footer class="row txt-white bg-secondary txt-black" id="footer">
+        <div class="container-fluid" style="padding-top:20px">
+          <div class="row">
+            <div class="col-xs-12 txt-center">
+              <p>copyright 2015 @ Group B
+              <br>made for YWC#12</p>
+
+            </div>
+          </div>
+        </div>
+      </footer>
+    {% endblock %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="/js/player.js"></script>
+
+    {% block script %}
+    {% endblock %}
+  </body>
+</html>

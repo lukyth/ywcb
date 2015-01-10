@@ -16,7 +16,7 @@ class Phase1Migration extends Migration {
 		{
 			$table->increments('id');
 			$table->char('name', 255);
-			$table->text('description');
+			$table->text('description')->nullable();
 			$table->char('file', 255)->nullable();
 			$table->char('instrument', 255);
 			$table->tinyInteger('permission')->default(0);

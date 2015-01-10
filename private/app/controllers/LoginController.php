@@ -19,7 +19,7 @@ class LoginController extends BaseController {
 			$validator = Validator::make(
 				Input::all(),
 			    array(
-			    	'email' => 'required|email|unique:users',
+			    	'email' => 'required|max:255|email|unique:users',
 			    	'password' => 'required|confirmed',
 			    )
 			);
@@ -27,6 +27,7 @@ class LoginController extends BaseController {
 				$user = new User;
 				$user->email = Input::get('email');
 				$user->password = Hash::make(Input::get('password'));
+				$user->display_name = $user->email;
 				$user->save();
 				Session::flash('message', 'Registered successfully');
 				return Redirect::intended('/login');
@@ -35,6 +36,11 @@ class LoginController extends BaseController {
 			}
 		}
 		return View::make('register');
+	}
+
+	public function logout(){
+		Auth::logout();
+		return Redirect::intended('/');
 	}
 
 }

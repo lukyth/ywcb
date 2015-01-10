@@ -1,0 +1,7 @@
+{% import "trackmacro.twig" as trackm %}
+
+<h1>{{user.display_name}}</h1>
+
+{% for track in tracks %}
+{{trackm.display_track(track)}}
+{% endfor %}
