@@ -12,7 +12,7 @@ class TrackController extends BaseController {
 			$model = Track::findOrFail($id);
 			if($model->permission != 0 && $model->user != Auth::id()){
 				Session::flash('error', 'This track does not allow jamming');
-				return Redirect::to('t/'.$model->id.'/jam');
+				return Redirect::to('t/'.$model->id);
 			}
 		}
 		if(Request::isMethod('post') || Request::isMethod('put')){
@@ -48,13 +48,13 @@ class TrackController extends BaseController {
 						$track->parents()->save($item);
 					}
 					$track->parents()->save($model);
-					$target = '/t/'.$track->id.'/edit';
+					// $target = '/t/'.$track->id.'/edit';
 				}
 
 				return Redirect::intended($target);
 			}else{
 				if($model){
-					$target = 't/'.$model->id.'/jam';
+					$target = 't/'.$model->id.'/metadata';
 				}else{
 					$target = 'track/create';
 				}
