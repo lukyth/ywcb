@@ -29,4 +29,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return "http://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))). '?d=identicon';
 	}
 
+	public function tracks(){
+		return $this->hasMany('Track', 'user');
+	}
+
 }

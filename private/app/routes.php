@@ -24,6 +24,7 @@ Route::match(array('GET', 'POST', 'PUT'), '/t/{id}/jam', array('as' => 'jam_trac
 Route::match(array('GET', 'POST', 'PUT'), '/t/{id}/edit', array('as' => 'edit_track', 'uses' => 'TrackController@edit'));
 
 Route::get('/search', array('as' => 'search', 'uses' => 'SearchController@search'));
+Route::get('/u/{user}', array('as' => 'user', 'uses' => 'UserController@profile'));
 
 Route::get('/{name}', function($name)
 {
