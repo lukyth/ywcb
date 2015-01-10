@@ -1,0 +1,110 @@
+body{
+	padding-top:50px;
+}
+
+.container-fluid{
+	max-width: 1000px;
+}
+
+/*colors*/
+.bg-primary{background-color:#2f1131;}
+.bg-secondary{background-color:#e4bf22;}
+.bg-info{background-color:#6fc9c1;}
+.bg-danger{background-color:#EC1763;}
+
+.txt-white{color:#fff;}
+.txt-black{color:#000;}
+.txt-center{text-align: center}
+.txt-left{text-align: left}
+.txt-right{text-align: right}
+
+.txt-primary{color:#2f1131;}
+.txt-secondary{color:#e4bf22;}
+.txt-info{color:#6fc9c1;}
+.txt-danger{color:#EC1763;}
+
+.btn{border-radius: 0; border:none;}
+.btn-primary{background-color:#2f1131;}
+.btn-secondary{background-color:#e4bf22; color:#000;}
+.btn-info{background-color:#6fc9c1;}
+.btn-danger{background-color:#EC1763;}
+
+.btn-primary:hover{ background-color:#fff !important;}
+.btn-secondary:hover{ background-color:#fff !important;}
+.btn-info:hover{ background-color:lighten(#6fc9c1,10%) !important;}
+.btn-danger:hover{ background-color:lighten(#EC1763,10%) !important;}
+
+.label-primary{background-color:#2f1131;}
+.label-secondary{background-color:#e4bf22; color:#000;}
+.label-info{background-color:#6fc9c1;}
+.label-danger{background-color:#EC1763;}
+
+a{color:#2f1131;}
+a.secondary{color:#e4bf22;}
+
+.mockup-circle{
+	width:200px;
+	height:200px;
+	border-radius: 50%;
+	background-color:#aaa;
+	display:inline-block;
+}
+
+.mockup-avt-sm{
+	width:64px;
+	height:64px;
+	margin:5px;
+	background-color:#aaa;
+	display:inline-block;
+}
+
+.mockup-avt-xs{
+	width:32px;
+	height:32px;
+	margin:2px;
+	background-color:#aaa;
+	display:inline-block;
+	vertical-align:middle;
+}
+
+.pad-section-lg .row{
+	padding-top:30px;
+}
+
+.pad-section-lg .row:first-child{
+	padding-top:50px;
+}
+
+.navbar{
+	background-color:#2f1131;
+	border:none;
+	color:#fff;
+}
+
+.navbar-nav>li>a, .navbar-brand{
+	color:#fff !important;
+}
+
+.navbar-accent{
+	background-color:#e4bf22;
+}
+.navbar-accent>a{
+	color:#000 !important;
+}
+.navbar-accent>a:hover{
+	background-color:#fff !important;
+}
+
+.glyphicon{
+	border-color:#2f1131;
+}
+
+.play{
+	height:60px;
+	width:60px;
+	margin:10px 10px 0;
+	border-radius: 50%;
+	background-color:#2f1131;
+	display:inline-block;
+	vertical-align: middle;
+}
