@@ -14,7 +14,7 @@ class User extends Migration {
 	{
 		Schema::create('users', function($table){
 			$table->increments('id');
-			$table->char('username', 20);
+			$table->char('email', 255)->unique();
 			$table->char('password', 255);
 			$table->timestamps();
 			$table->rememberToken();
@@ -29,7 +29,7 @@ class User extends Migration {
 	 */
 	public function down()
 	{
-		echo 'gg';
+		Schema::drop('users');
 	}
 
 }
