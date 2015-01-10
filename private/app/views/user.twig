@@ -12,8 +12,8 @@
         <div class="description pull-left">
           <h1>{{user.display_name}}</h1>
           <div class="social">
-            <button type="button" class="btn btn-default">Subscribe</button>
-            <button type="button" class="btn btn-default btn-sm">Message</button>
+            <button type="button" class="btn btn-primary">Subscribe</button>
+            <button type="button" class="btn btn-secondary btn-sm">Message</button>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
       <div class="col-sm-8 col-sm-offset-2">
       <div class="txt-center">
       Start a jam session,<br>
-      <a href="rec" class="btn btn-primary">CREATE NEW TRACK</a></div>
+      <a href="/rec" class="btn btn-primary">CREATE NEW TRACK</a></div>
       {% for track in tracks %}
         {{trackm.display_track(track)}}
       {% endfor %}
