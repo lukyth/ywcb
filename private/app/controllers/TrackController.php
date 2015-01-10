@@ -2,12 +2,16 @@
 
 class TrackController extends BaseController {
 
-	public function create(){
+	public function create($id=null){
 		if(!Auth::check()){
 			Session::flash('error', 'Please login');
 			return Redirect::to('login');
 		}
-		if(Request::isMethod('post')){
+		$model = null;
+		if($id){
+			$model = Track::find($id);
+		}
+		if(Request::isMethod('post') || Request::isMethod('put')){
 			$validator = Validator::make(
 				Input::all(),
 			    array(
@@ -31,18 +35,36 @@ class TrackController extends BaseController {
 				$track->file = '/sound/'.$uid;
 
 				$track->save();
+
+				// copy parent tree
+				if($model){
+					foreach($model->parents() as $item){
+						$track->parents()->save($item);
+					}
+					$track->parents()->save($model);
+				}
+
 				return Redirect::intended('/t/' . $track->id);
 			}else{
-				return Redirect::to('track/create')->withErrors($validator);
+				if($model){
+					$target = 't/'.$model->id.'/jam';
+				}else{
+					$target = 'track/create';
+				}
+				return Redirect::to($target)->withErrors($validator);
 			}
 		}
-		return View::make('track_create');
+		return View::make('track_create', array(
+			'model' => $model,
+			'jam' => !!$id
+		));
 	}
 
 	public function show($id){
 		try{
 			return View::make('track', array(
-				'track' => Track::findOrFail($id)
+				'track' => Track::findOrFail($id),
+				'rel' => TrackRel::where('track_2', $id)->get(),
 			));
 		}catch(Illuminate\Database\Eloquent\ModelNotFoundException $e){
 			App::abort(404);

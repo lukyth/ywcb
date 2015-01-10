@@ -5,7 +5,15 @@
 {{session_get('error')}}
 {% endif %}
 
-{{BootstrapForm.open({'files': true})|raw}}
+<h1>
+	{% if jam %}
+	Jamming {{model.name}}
+	{% else %}
+	Upload track
+	{% endif %}
+</h1>
+
+{{BootstrapForm.open({'files': true, 'model': model, 'update': 'jam_track', 'store': 'create_track'})|raw}}
 {{BootstrapForm.text('name', 'Track name')|raw}}
 {{BootstrapForm.textarea('description', 'Description')|raw}}
 {{BootstrapForm.input('file', 'file', 'Track file', {'accept':'audio/*'})|raw}}
@@ -24,4 +32,4 @@ mp3 ok?
 	'No jam'
 ], 0)|raw}}
 {{BootstrapForm.submit('Create')|raw}}
-</form>
+{{BootstrapForm.close()|raw}}

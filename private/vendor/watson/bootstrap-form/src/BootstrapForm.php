@@ -153,6 +153,11 @@ class BootstrapForm
         return $this->text($name, $label, $value, $options);
     }
 
+    public function close()
+    {
+        return $this->form->close();
+    }
+
     /**
      * Create a Bootstrap text field input.
      *
