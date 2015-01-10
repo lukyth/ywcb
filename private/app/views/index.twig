@@ -1,117 +1,80 @@
-<!doctype html>
 {% import "trackmacro.twig" as trackm %}
-<html>
-	<head>
-		<title>MIXIC</title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="/css/bootstrap.css">
-		<link rel="stylesheet" href="/css/ywc.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	</head>
-	<body>
-		<!-- <h1>Play your part, jam in your style.</h1> -->
-		<nav class="navbar navbar-primary navbar-fixed-top">
-  			<div class="container-fluid">
-    			<div class="navbar-header">
-					<a class="navbar-brand" href="#">MIXIC</a>
-    			</div>
-    			<ul class="nav navbar-nav navbar-left">
-					<li><a href="/search">EXPLORE</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/login">SIGN IN</a></li>
-					<li class="navbar-accent"><a href="/register">SIGN UP</a></li>
-				</ul>
-  			</div>
-		</nav>
-		<div class="row txt-white bg-primary" style="height:400px;">
-			<div class="container-fluid" style="padding-top:100px">
-				<div class="col-xs-12">
-					<h1>Play your part, jam in your style.</h1>
-					<p>Lorem ipsum dolor sit amet</p>
-					<a href="/register" class="btn btn-secondary">Join</a> or <a href="/search" class="secondary">explore what jamming can create!</a>
+{% extends 'base.twig' %}
+{% block content %}
+	<div class="row txt-white bg-primary" style="height:400px;">
+		<div class="container-fluid" style="padding-top:100px">
+			<div class="col-xs-12">
+				<h1>Play your part, jam in your style.</h1>
+				<p>Lorem ipsum dolor sit amet</p>
+				<a href="/register" class="btn btn-secondary">Join</a> or <a href="/search" class="secondary">explore what jamming can create!</a>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="container-fluid pad-section-lg">
+			<div class="row">
+				<div class="col-xs-4 txt-center">
+					<div class="mockup-circle"></div>
+					<h3>Explore</h3>
+					<p>BlahBlah BlahBlahBlah BlahBlahBlahBlah BlahBlah.</p>
+				</div>
+				<div class="col-xs-4 txt-center">
+					<div class="mockup-circle"></div>
+					<h3>Jam</h3>
+					<p>BlahBlah BlahBlahBlah BlahBlahBlahBlah BlahBlah.</p>
+				</div>
+				<div class="col-xs-4 txt-center">
+					<div class="mockup-circle"></div>
+					<h3>Joy</h3>
+					<p>BlahBlah BlahBlahBlah BlahBlahBlahBlah BlahBlah.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<h2>Trending Jams</h2>
+					{% for track in tracks %}
+					{{trackm.display_track(track)}}
+					{% endfor %}
+
+					<div class="txt-center">
+						<br>
+						<br>
+						<a href="/search" class="btn btn-primary">explore for more</a>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<h2>Styles</h2>
+					<span class="label label-primary">Rock</span>
+					<span class="label label-primary">Pop</span>
+					<span class="label label-primary">Indie</span>
+					<span class="label label-primary">Thai</span>
+					<span class="label label-primary">Classical</span>
+					<span class="label label-primary">Hip-hop</span>
+					<span class="label label-primary">Electronic</span>
+					<span class="label label-primary">Dubstep</span>
+					<h2>Search</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 txt-center">
+					<h2>Jam with over {{users_count}} musicians across the world.</h2>
+					{% for user in users %}
+					<a href="/u/{{user.id}}" class="mockup-avt-sm" style="background-image: url({{user.gravatar()}}); background-size: contain;"></a>
+					{% endfor %}
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="container-fluid pad-section-lg">
-				<div class="row">
-					<div class="col-xs-4 txt-center">
-						<div class="mockup-circle"></div>
-						<h3>Explore</h3>
-						<p>BlahBlah BlahBlahBlah BlahBlahBlahBlah BlahBlah.</p>
-					</div>
-					<div class="col-xs-4 txt-center">
-						<div class="mockup-circle"></div>
-						<h3>Jam</h3>
-						<p>BlahBlah BlahBlahBlah BlahBlahBlahBlah BlahBlah.</p>
-					</div>
-					<div class="col-xs-4 txt-center">
-						<div class="mockup-circle"></div>
-						<h3>Joy</h3>
-						<p>BlahBlah BlahBlahBlah BlahBlahBlahBlah BlahBlah.</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-8">
-						<h2>Trending Jams</h2>
-						{% for track in tracks %}
-						{{trackm.display_track(track)}}
-						{% endfor %}
-						
-						<div class="txt-center">
-							<br>
-							<br>
-							<a href="/search" class="btn btn-primary">explore for more</a>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<h2>Styles</h2>
-						<span class="label label-primary">Rock</span>
-						<span class="label label-primary">Pop</span>
-						<span class="label label-primary">Indie</span>
-						<span class="label label-primary">Thai</span>
-						<span class="label label-primary">Classical</span>
-						<span class="label label-primary">Hip-hop</span>
-						<span class="label label-primary">Electronic</span>
-						<span class="label label-primary">Dubstep</span>
-						<h2>Search</h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 txt-center">
-						<h2>Jam with over {{users_count}} musicians across the world.</h2>
-						{% for user in users %}
-						<a href="/u/{{user.id}}" class="mockup-avt-sm" style="background-image: url({{user.gravatar()}}); background-size: contain;"></a>
-						{% endfor %}
-					</div>
+	</div>
+	<div class="row txt-white bg-primary" style="margin-top:90px; padding-top:40px; padding-bottom:80px;">
+		<div class="container-fluid pad-section-lg">
+			<div class="row">
+				<div class="col-xs-12 txt-center">
+					<h2>Some advertising word. I don't know what to write.</h2>
+					<p>Just some placeholder, don't read me.</p>
+					<a href="/register" class="btn btn-secondary">Sign up now</a>
+
 				</div>
 			</div>
 		</div>
-		<div class="row txt-white bg-primary" style="margin-top:90px; padding-top:40px; padding-bottom:80px;">
-			<div class="container-fluid pad-section-lg">
-				<div class="row">
-					<div class="col-xs-12 txt-center">
-						<h2>Some advertising word. I don't know what to write.</h2>
-						<p>Just some placeholder, don't read me.</p>
-						<a href="/register" class="btn btn-secondary">Sign up now</a>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row txt-white bg-secondary txt-black" id="footer">
-			<div class="container-fluid" style="padding-top:20px">
-				<div class="row">
-					<div class="col-xs-12 txt-center">
-						<p>copyright 2015 @ Group B
-						<br>made for YWC#12</p>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script src="/js/player.js"></script>
-	</body>
-</html>
+	</div>
+{% endblock %}
