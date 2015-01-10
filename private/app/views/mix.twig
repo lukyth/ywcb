@@ -6,9 +6,13 @@
       <div class="row">
         <div class="col-sm-12">
         <br>
-          <h1>Jamming "Name"</h1>
+          <h1>{% if track %}
+Mixing your jam of "{{track.name}}"
+{% else %}
+Upload track
+{% endif %}</h1>
           <div class="txt-center">
-            <img src="img/play.svg" style="width:100px">
+            <div style="width: 100px; margin: auto" data-player="{{track.get_player_data()|json_encode}}"></div>
           </div>
           <br><br>
           <div class="equalizer clearfix txt-center">
@@ -29,7 +33,7 @@
                 <img src="/img/vol.svg" style="vertical-align:middle">
               </div>
               <div class="col-sm-8 col-lg-9">
-                <img src="img/sound.svg" style="width:100%">
+                <img src="/img/sound.svg" style="width:100%">
               </div>
             </div>
             <div class="row">
@@ -40,7 +44,7 @@
                 <img src="/img/vol.svg" style="vertical-align:middle">
               </div>
               <div class="col-sm-8 col-lg-9">
-                <img src="img/sound.svg" style="width:100%">
+                <img src="/img/sound.svg" style="width:100%">
               </div>
             </div>
             <div class="row">
@@ -51,7 +55,7 @@
                 <img src="/img/vol.svg" style="vertical-align:middle">
               </div>
               <div class="col-sm-8 col-lg-9">
-                <img src="img/sound.svg" style="width:100%">
+                <img src="/img/sound.svg" style="width:100%">
               </div>
             </div>
             <div class="row">
@@ -62,14 +66,14 @@
                 <img src="/img/vol.svg" style="vertical-align:middle">
               </div>
               <div class="col-sm-8 col-lg-9">
-                <img src="img/sound.svg" style="width:100%">
+                <img src="/img/sound.svg" style="width:100%">
               </div>
             </div>
           </div>
 
           <div class="txt-center button-container">
-          <button type="submit" class="btn btn-secondary btn-lg center-block" style="display:inline-block">Back to record</button>
-          <button type="submit" class="btn btn-primary btn-lg center-block" style="display:inline-block">Submit</button></div>
+          <a href="{% if track %}/t/{{track.id}}/jam{%else%}/track/rec{%endif%}" type="submit" class="btn btn-secondary btn-lg center-block" style="display:inline-block">Back to record</a>
+          <a href="{% if track %}/t/{{track.id}}/metadata{%else%}/track/create{%endif%}" type="submit" class="btn btn-primary btn-lg center-block" style="display:inline-block">Submit</a></div>
           <br><br><br>
 
         </div>
