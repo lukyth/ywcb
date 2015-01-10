@@ -1,35 +1,48 @@
-{% if session_get('message') %}
-{{session_get('message')}}
-{% endif %}
-{% if session_get('error') %}
-{{session_get('error')}}
-{% endif %}
+{% extends "base" %}
 
-<h1>
-	{% if jam %}
-	Jamming {{model.name}}
-	{% else %}
-	Upload track
+{% block title %}{% if jam %}
+Jamming {{model.name}}
+{% else %}
+Upload track
+{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container">
+	<h1>{% if jam %}
+Jamming {{model.name}}
+{% else %}
+Upload track
+{% endif %}</h1>
+
+	{% if session_get('error') %}
+	<div class="alert alert-danger">{{session_get('error')}}</div>
 	{% endif %}
-</h1>
 
-{{BootstrapForm.open({'files': true, 'model': model, 'update': 'jam_track', 'store': 'create_track'})|raw}}
-{{BootstrapForm.text('name', 'Track name')|raw}}
-{{BootstrapForm.textarea('description', 'Description')|raw}}
-{{BootstrapForm.input('file', 'file', 'Track file', {'accept':'audio/*'})|raw}}
-mp3 ok?
-{{BootstrapForm.radios('instrument', 'Instrument', {
-	'Bass': 'Bass',
-	'Guitar': 'Guitar',
-	'Drum': 'Drum',
-	'Vocal': 'Vocal',
-	'Synth': 'Synth',
-	'Other': 'Other'
-}, 'Bass')|raw}}
-{{BootstrapForm.radios('permission', 'Permission', [
-	'Free to Jam',
-	'Ask to jam',
-	'No jam'
-], 0)|raw}}
-{{BootstrapForm.submit('Create')|raw}}
-{{BootstrapForm.close()|raw}}
+	{% if session_get('message') %}
+	<div class="alert alert-success">{{session_get('message')}}</div>
+	{% endif %}
+
+	{{BootstrapForm.open({'files': true, 'model': model, 'update': 'jam_track', 'store': 'create_track'})|raw}}
+	{{BootstrapForm.text('name', 'Track name')|raw}}
+	{{BootstrapForm.textarea('description', 'Description')|raw}}
+	{{BootstrapForm.input('file', 'file', 'Track file', {'accept':'audio/*'})|raw}}
+	<div class="block-help">Only MP3 is supported</div>
+	{{BootstrapForm.radios('instrument', 'Instrument', {
+		'Bass': 'Bass',
+		'Guitar': 'Guitar',
+		'Drum': 'Drum',
+		'Vocal': 'Vocal',
+		'Synth': 'Synth',
+		'Other': 'Other'
+	}, 'Bass')|raw}}
+	{{BootstrapForm.radios('permission', 'Permission', [
+		'Free to Jam',
+		'Ask to jam',
+		'No jam'
+	], 0)|raw}}
+	{{BootstrapForm.submit('Create')|raw}}
+	{{BootstrapForm.close()|raw}}
+
+</div>
+<br>
+{% endblock %}

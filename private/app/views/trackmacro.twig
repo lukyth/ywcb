@@ -13,9 +13,9 @@
 		<span class="glyphicon glyphicon-plus"></span>12 &nbsp;&nbsp;
 		by
 
-		<a href="/u/{{user.id}}" class="mockup-avt-xs" style="background-image: url({{track.user().first().gravatar()}}); background-size: contain;"></a>
+		<a href="/u/{{track.user}}" class="mockup-avt-xs" style="background-image: url({{track.user().first().gravatar()}}); background-size: contain;"></a>
 		{% for parent in track.parents %}
-		<a href="/u/{{user.id}}" class="mockup-avt-xs" style="background-image: url({{parent.user().first().gravatar()}}); background-size: contain;"></a>
+		<a href="/u/{{parent.user}}" class="mockup-avt-xs" style="background-image: url({{parent.user().first().gravatar()}}); background-size: contain;"></a>
 		{% endfor %}
 	</div>
 </div>
