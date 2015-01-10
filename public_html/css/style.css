@@ -21,8 +21,47 @@ a, a:visited {
   text-decoration:none;
 }
 
+h1,
+h2,
+p {
+  text-align: left;
+}
+
 h1 {
   font-size: 32px;
   margin: 16px 0 0 0;
 }
 
+img {
+  background: gray;
+  width: 60px;
+  height: 60px;
+}
+
+.title {
+  text-align: left;
+}
+
+.player {
+  height: 60px;
+  background: orange;
+}
+
+.track .player,
+.relate .player {
+  width: 100%;
+}
+
+.list {
+  width: 100%;
+}
+
+.list img,
+.list p {
+  float: left;
+}
+
+.p img {
+  width: 20px;
+  height: 20px;
+}
