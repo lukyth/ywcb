@@ -9,6 +9,9 @@ class Track extends Eloquent{
     public function parents(){
         return $this->belongsToMany('Track', 'track_rel', 'track_1', 'track_2');
     }
+    public function children(){
+        return $this->belongsToMany('Track', 'track_rel', 'track_2', 'track_1');
+    }
 
     public function get_player_data(){
 		$out = array();

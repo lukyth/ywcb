@@ -43,6 +43,7 @@
 					</div>
 				</div>
 				<div class="col-sm-4">
+
 					<h2>Styles</h2>
 					<span class="label label-primary">Rock</span>
 					<span class="label label-primary">Pop</span>
@@ -52,10 +53,23 @@
 					<span class="label label-primary">Hip-hop</span>
 					<span class="label label-primary">Electronic</span>
 					<span class="label label-primary">Dubstep</span>
-					<h2>Search</h2>
-					<img src="img/search.svg" style="width:100%">
+					
+
+					<h4>Instrument</h4>
+					<a href="/search?instrument=Bass" class="label label-primary">Bass</a>
+					<a href="/search?instrument=Guitar" class="label label-primary">Guitar</a>
+					<a href="/search?instrument=Drum" class="label label-primary">Drum</a>
+					<a href="/search?instrument=Vocal" class="label label-primary">Vocal</a>
+					<a href="/search?instrument=Synth" class="label label-primary">Synth</a>
+					<a href="/search?instrument=Other" class="label label-primary">Other</a>
+					<h4>Search</h4>
+					<form action="" method="GET" class="form form-inline">
+						<input type="search" name="q" value="{{search}}" class="form-control">
+						<input type="submit" class="btn btn-primary" value="Search">
+					</form>
 					<br><br>
 					<img src="img/decorate.svg" class="img-responsive img-center" style="width:80%">
+
 				</div>
 			</div>
 			<div class="row">

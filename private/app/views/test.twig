@@ -1,11 +1,32 @@
-<!doctype html>
-<html>
-	<head>
-		<title>test</title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="css/bootstrap.css">
-	</head>
-	<body>
-		<h1>Hello, things are GOOD.</h1>
-	</body>
-</html>
+{% extends "base.twig" %}
+{% block content %}
+<div id="record">go go go</div>
+<script src="/js/recordmp3.js"></script>
+<script>
+window.log = console.log;
+ window.AudioContext = window.AudioContext || window.webkitAudioContext;
+      navigator.getUserMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
+var audio_context = new AudioContext;
+navigator.getUserMedia({audio: true}, function(stream){
+	$("#record").click(function(){
+		var input = audio_context.createMediaStreamSource(stream);
+    	input.connect(audio_context.destination);
+		var rec = new Recorder(input);
+		rec.record();
+		console.log('go');
+		setTimeout(function(){
+			rec.stop();
+			rec.exportWAV(function(blob){
+
+			});
+			console.log('end');
+		}, 2000);
+	});
+}, function(e) {
+      console.error(e);
+});
+</script>
+{% endblock %}

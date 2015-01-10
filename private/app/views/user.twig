@@ -5,11 +5,11 @@
 {% block title %}{{user.display_name}}{% endblock %}
 
 {% block content %}
-  <div class="container">
+  <div class="container user-page">
     <div class="row">
-      <div class="profile col-sm-8">
-        <img src="" alt="" class="profile-image">
-        <div class="description">
+      <div class="profile col-sm-8 clearfix">
+        <a href="/u/{{user.id}}" class="mockup-avt-xs pull-left" style="background-image: url({{user.gravatar()}}); background-size: contain;"></a>
+        <div class="description pull-left">
           <h1>{{user.display_name}}</h1>
           <div class="social">
             <button type="button" class="btn btn-default">Subscribe</button>
@@ -19,17 +19,19 @@
       </div>
       <div class="skill-container col-sm-4">
         <h2>Skill</h2>
-        <div class="skill">
-          <img src="" alt="" class="guitar">
-          <img src="" alt="" class="bass">
-          <img src="" alt="" class="drum">
+        <div class="skill clearfix">
+          <img src="/img/guitar.svg" alt="Guitar" class="pull-left guitar">
+          <img src="/img/bass.svg" alt="Bass" class="pull-left bass">
+          <img src="/img/drum.svg" alt="Drum" class="pull-left drum">
         </div>
       </div>
     </div>
     <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
       {% for track in tracks %}
         {{trackm.display_track(track)}}
       {% endfor %}
+    </div>
     </div>
   </div>
 {% endblock %}

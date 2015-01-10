@@ -152,6 +152,28 @@ a.secondary{color:#e4bf22;}
 	display:inline-block;
 }
 
+.profile,
+.skill-container {
+	margin: 20px 0;
+}
+
+.profile .mockup-avt-xs {
+	width: 80px;
+	height: 80px;
+	margin: 18px 14px 0 0;
+}
+
+.skill img {
+	width: 40px;
+	height: auto;
+	margin-right: 10px;
+}
+
+.user-page .sound img {
+	width: 380px;
+	height: 60px;
+}
+
 	.pc10{width:10%; display:inline-block;}
 	.pc20{width:20%; display:inline-block;}
 	.pc30{width:30%; display:inline-block;}

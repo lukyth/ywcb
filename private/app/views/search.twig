@@ -1,9 +1,33 @@
 {% import "trackmacro.twig" as trackm %}
-<form action="" method="GET">
-	<input type="text" name="q" value="{{search}}">
-	<input type="submit">
-</form>
-{% for track in tracks %}
-{{trackm.display_track(track)}}
-{% endfor %}
-{{tracks.links()}}
+{% extends 'base.twig' %}
+
+{% block content %}
+	<div class="row">
+		<div class="container-fluid pad-section-lg-ni">
+			<div class="row">
+				<div class="col-sm-8">
+					<h1>Explore</h1>
+					{% for track in tracks %}
+					{{trackm.display_track(track)}}
+					{% endfor %}
+					{{tracks.links()}}
+				</div>
+				<div class="col-sm-4 hidden-xs">
+					<h4>Instrument</h4>
+					<a href="/search?instrument=Bass" class="label label-primary">Bass</a>
+					<a href="/search?instrument=Guitar" class="label label-primary">Guitar</a>
+					<a href="/search?instrument=Drum" class="label label-primary">Drum</a>
+					<a href="/search?instrument=Vocal" class="label label-primary">Vocal</a>
+					<a href="/search?instrument=Synth" class="label label-primary">Synth</a>
+					<a href="/search?instrument=Other" class="label label-primary">Other</a>
+					<h4>Search</h4>
+					<form action="" method="GET" class="form form-inline">
+						<input type="search" name="q" value="{{search}}" class="form-control">
+						<input type="submit" class="btn btn-primary" value="Search">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="height:40px"></div>
+{% endblock %}

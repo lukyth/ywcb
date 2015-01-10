@@ -1,13 +1,25 @@
-{% if session_get('message') %}
-{{session_get('message')}}
-{% endif %}
-{% if session_get('error') %}
-{{session_get('error')}}
-{% endif %}
+{% extends "base" %}
 
-{{BootstrapForm.open()|raw}}
-{{BootstrapForm.email('email', 'E-Mail')|raw}}
-{{BootstrapForm.password()|raw}}
-{{BootstrapForm.submit('Login')|raw}}
-{{BootstrapForm.close()|raw}}
-<a href="/register">Register</a>
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 80px; margin-bottom: 80px;">
+	<div class="col-md-6 col-md-offset-3">
+		<h1>Register</h1><br>
+
+		{% if session_get('error') %}
+		<div class="alert alert-danger">{{session_get('error')}}</div>
+		{% endif %}
+
+		{% if session_get('message') %}
+		<div class="alert alert-success">{{session_get('message')}}</div>
+		{% endif %}
+
+		{{BootstrapForm.open()|raw}}
+		{{BootstrapForm.email('email', 'E-Mail')|raw}}
+		{{BootstrapForm.password()|raw}}
+		{{BootstrapForm.submit('Login')|raw}}
+		{{BootstrapForm.close()|raw}}
+	</div>
+</div>
+{% endblock %}

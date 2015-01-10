@@ -8,7 +8,7 @@ class LoginController extends BaseController {
 			if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password')))){
 				return Redirect::intended('/');
 			}else{
-				Session::flash('error', 'Login fail');
+				Session::flash('error', 'Cannot log you in. Please check your email address and password are entered correctly.');
 			}
 		}
 		return View::make('login');
