@@ -1,0 +1,27 @@
+{% if session_get('message') %}
+{{session_get('message')}}
+{% endif %}
+{% if session_get('error') %}
+{{session_get('error')}}
+{% endif %}
+
+{{BootstrapForm.open({'files': true})|raw}}
+{{BootstrapForm.text('name', 'Track name')|raw}}
+{{BootstrapForm.textarea('description', 'Description')|raw}}
+{{BootstrapForm.input('file', 'file', 'Track file', {'accept':'audio/*'})|raw}}
+mp3 ok?
+{{BootstrapForm.radios('instrument', 'Instrument', {
+	'Bass': 'Bass',
+	'Guitar': 'Guitar',
+	'Drum': 'Drum',
+	'Vocal': 'Vocal',
+	'Synth': 'Synth',
+	'Other': 'Other'
+}, 'Bass')|raw}}
+{{BootstrapForm.radios('permission', 'Permission', [
+	'Free to Jam',
+	'Ask to jam',
+	'No jam'
+], 0)|raw}}
+{{BootstrapForm.submit('Create')|raw}}
+</form>

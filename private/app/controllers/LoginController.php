@@ -19,7 +19,7 @@ class LoginController extends BaseController {
 			$validator = Validator::make(
 				Input::all(),
 			    array(
-			    	'email' => 'required|email|unique:users',
+			    	'email' => 'required|max:255|email|unique:users',
 			    	'password' => 'required|confirmed',
 			    )
 			);

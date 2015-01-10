@@ -24,6 +24,10 @@ Route::post('/login', 'LoginController@login');
 Route::get('/register', 'LoginController@register');
 Route::post('/register', 'LoginController@register');
 
+Route::get('/track/create', 'TrackController@create');
+Route::post('/track/create', 'TrackController@create');
+Route::get('/t/{id}', 'TrackController@show');
+
 Route::get('/{name}', function($name)
 {
 	return Twig::render($name);
