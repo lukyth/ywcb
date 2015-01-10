@@ -185,6 +185,12 @@ a.secondary{color:#e4bf22;}
 	.pc90{width:90%; display:inline-block;}
 	.pc100{width:100%; display:inline-block;}
 
+@media (max-width: 991px) {
+	.navbar-form {
+		display: none;
+	}
+}
+
 @media (max-width:767px){
 	.pc10-sm{width:10%; display:inline-block;}
 	.pc20-sm{width:20%; display:inline-block;}
@@ -196,6 +202,11 @@ a.secondary{color:#e4bf22;}
 	.pc80-sm{width:80%; display:inline-block;}
 	.pc90-sm{width:90%; display:inline-block;}
 	.pc100-sm{width:100%; display:inline-block;}
+
+	.record-page .soundwave {
+		height: 100px;
+		width: auto;
+	}
 }
 @media (max-width:480px){
 	.pc10-xs{width:10%; display:inline-block;}
