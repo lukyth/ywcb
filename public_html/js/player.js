@@ -46,6 +46,7 @@ $('[data-player]').each(function(){
 	$('<img src="/img/play.svg" style="width:100%;">').css("cursor", "pointer").appendTo(this).click(function(){
 		isPlaying = !isPlaying;
 		isPlaying ? play() : pause();
+		$(this).attr('src', isPlaying ? '/img/stop.svg' : '/img/play.svg');
 	});
 });
 
