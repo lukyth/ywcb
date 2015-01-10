@@ -38,4 +38,9 @@ class LoginController extends BaseController {
 		return View::make('register');
 	}
 
+	public function logout(){
+		Auth::logout();
+		return Redirect::intended('/');
+	}
+
 }

@@ -14,6 +14,7 @@
 Route::get('/', array('as' => 'index', 'uses' => 'HomeController@home'));
 
 Route::match(array('GET', 'POST'), '/login', array('as' => 'login', 'uses' => 'LoginController@login'));
+Route::get('/logout', array('as' => 'logout', 'uses' => 'LoginController@logout'));
 
 Route::match(array('GET', 'POST'), '/register', array('as' => 'register', 'uses' => 'LoginController@register'));
 

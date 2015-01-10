@@ -32,7 +32,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if auth_check() %}
-        <li><a href="/u/{{auth_user().id}}">{{auth_user().display_name}}</a></li>
+        <li class="navbar-accent"><a href="/u/{{auth_user().id}}">{{auth_user().display_name}}</a></li>
+        <li><a href="/logout">LOG OUT</a></li>
         {% else %}
         <li><a href="/login">SIGN IN</a></li>
         <li class="navbar-accent"><a href="/register">SIGN UP</a></li>
