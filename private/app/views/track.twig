@@ -26,33 +26,42 @@ child: <a href="/t/{{item.track_1().first().id}}">{{item.track_1().first().name}
 
 var tracks = [
 	{% for item in track.parents %}
-	{{item.file|json_encode|raw}},
+	[{{item.file|json_encode|raw}}, {{item.shift|json_encode|raw}}],
 	{% endfor %}
-	{{track.file|json_encode|raw}},
+	[{{track.file|json_encode|raw}}, {{track.shift|json_encode|raw}}],
 ];
 
 var players = [];
 
 tracks.forEach(function(v){
-	players.push($("<audio>").attr({
+	var player = $("<audio>").attr({
 		'controls': false,
 		'preload': true,
-		'src': v
-	}).appendTo('#player').get(0));
+		'src': v[0]
+	}).appendTo('#player').get(0);
+	player._shift = v[1];
+	players.push(player);
 });
 
 $("#play").click(function(){
 	players.forEach(function(item){
 		item.pause();
-		item.currentTime = 0;
-		console.log(item.currentTime);
-		item.play();
+		item.currentTime = Math.max(0, -item._shift);
+		if(item._shift > 0){
+			item.timeout = setTimeout(function(){
+				console.log('play');
+				item.play();
+			}, item._shift * 1000);
+		}else{
+			item.play();
+		}
 	});
 	return false;
 });
 
 $("#stop").click(function(){
 	players.forEach(function(item){
+		clearTimeout(item.timeout);
 		item.pause();
 	});
 	return false;
