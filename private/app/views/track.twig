@@ -31,12 +31,15 @@
 				</div>
 				<br>
 				{% endif %}
+				{% if track.children().count() > 0 %}
 				<h2>Related Jams</h2>
-				{% include 'track-list-xs.twig' %}
-				{% include 'track-list-xs.twig' %}
+				{% for item in track.children %}
+				{{trackm.display_track(item)}}
+				{% endfor %}
 				<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
 					<a href="" class="btn btn-primary">see more &raquo;</a>
 				</div>
+				{% endif %}
 			</div>
 		</div>
 	</div>
