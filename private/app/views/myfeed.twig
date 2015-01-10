@@ -14,8 +14,8 @@
 				<div class="col-sm-4 hidden-xs">
 					<div class="txt-center">
 						<a href="user" class="txt-center">
-							<div class="mockup-avt-sm" style="width:150px; height:150px"></div>
-							<br><b>John Lovemusic</b>
+							<div class="mockup-avt-sm" style="width:150px; height:150px; background-image:url({{auth_user().gravatar()}}); background-size:contain;"></div>
+							<br><b>{{auth_user().display_name}}</b>
 						</a>
 					</div>
 					<h2>Explore</h2>
