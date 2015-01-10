@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"rcrowe/twigbridge": "0.6.*"
+		"rcrowe/twigbridge": "0.6.*",
+		"watson/bootstrap-form": "0.8.*"
 	},
 	"autoload": {
 		"classmap": [

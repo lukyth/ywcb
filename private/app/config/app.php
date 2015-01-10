@@ -121,7 +121,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'TwigBridge\ServiceProvider'
+		'TwigBridge\ServiceProvider',
+		'Watson\BootstrapForm\BootstrapFormServiceProvider'
 
 	),
 
@@ -190,6 +191,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Twig' => 'TwigBridge\Facade\Twig',
+		'BootstrapForm' => 'Watson\BootstrapForm\Facades\BootstrapForm'
 
 	),
 

@@ -1,0 +1,13 @@
+{% if session_get('message') %}
+{{session_get('message')}}
+{% endif %}
+{% if session_get('error') %}
+{{session_get('error')}}
+{% endif %}
+
+{{BootstrapForm.open()|raw}}
+{{BootstrapForm.email('email', 'E-Mail')|raw}}
+{{BootstrapForm.password()|raw}}
+{{BootstrapForm.submit('Login')|raw}}
+</form>
+<a href="/register">Register</a>

@@ -18,6 +18,12 @@ Route::get('/', function()
 	));
 });
 
+Route::get('/login', 'LoginController@login');
+Route::post('/login', 'LoginController@login');
+
+Route::get('/register', 'LoginController@register');
+Route::post('/register', 'LoginController@register');
+
 Route::get('/{name}', function($name)
 {
 	return Twig::render($name);
