@@ -18,14 +18,17 @@ return array(
 	|
 	*/
 
-	'default' => 'sqlite',
-
 	'connections' => array(
 
-		'sqlite' => array(
-			'driver'   => 'sqlite',
-			'database' => __DIR__.'/../../testing.sqlite',
-			'prefix'   => '',
+		'mysql' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'ywc12_b_db',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
 		),
 
 	),

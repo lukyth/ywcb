@@ -17,3 +17,8 @@ Route::get('/', function()
 		'group' => 'B'
 	));
 });
+
+Route::get('/{name}', function($name)
+{
+	return Twig::render($name);
+});

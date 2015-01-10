@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mysql_root',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,6 +52,17 @@ return array(
 			'database'  => 'ywc12_b_db',
 			'username'  => 'ywc12_b_db',
 			'password'  => 'bN4QbTyUSx',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'mysql_root' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'ywc12_b_db',
+			'username'  => 'root',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
