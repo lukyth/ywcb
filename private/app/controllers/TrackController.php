@@ -78,6 +78,16 @@ class TrackController extends BaseController {
 		}
 	}
 
+	public function rec($id){
+		try{
+			return View::make('rec', array(
+				'track' => Track::findOrFail($id),
+			));
+		}catch(Illuminate\Database\Eloquent\ModelNotFoundException $e){
+			App::abort(404);
+		}
+	}
+
 	public function edit($id){
 		if(!Auth::check()){
 			Session::flash('error', 'Please login');

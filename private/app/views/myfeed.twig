@@ -10,16 +10,6 @@
 					{% for track in tracks %}
 					{{trackm.display_track(track)}}
 					{% endfor %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
 				</div>
 				<div class="col-sm-4 hidden-xs">
 
@@ -33,12 +23,23 @@
 					<span class="label label-primary">Hip-hop</span>
 					<span class="label label-primary">Electronic</span>
 					<span class="label label-primary">Dubstep</span>
+					<h4>Instrument</h4>
+					<a href="/search?instrument=Bass" class="label label-primary">Bass</a>
+					<a href="/search?instrument=Guitar" class="label label-primary">Guitar</a>
+					<a href="/search?instrument=Drum" class="label label-primary">Drum</a>
+					<a href="/search?instrument=Vocal" class="label label-primary">Vocal</a>
+					<a href="/search?instrument=Synth" class="label label-primary">Synth</a>
+					<a href="/search?instrument=Other" class="label label-primary">Other</a>
 					<h4>Search</h4>
-					<img src="img/search.svg" style="width:100%">
-					<h2>Trening Jams</h2>
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
-					{% include 'track-list-xs.twig' %}
+					<form action="/search" method="GET" class="form form-inline">
+						<input type="search" name="q" value="{{search}}" class="form-control">
+						<input type="submit" class="btn btn-primary" value="Search">
+					</form>
+
+					<h2>Trending Jams</h2>
+					{% for track in tracks %}
+					{{trackm.display_track(track)}}
+					{% endfor %}
 					<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
 						<a href="" class="btn btn-primary">see more &raquo;</a>
 					</div>
