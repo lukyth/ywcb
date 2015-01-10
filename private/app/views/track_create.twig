@@ -7,42 +7,40 @@ Upload track
 {% endif %}{% endblock %}
 
 {% block content %}
-<div class="container">
-	<h1>{% if jam %}
-Jamming {{model.name}}
-{% else %}
-Upload track
-{% endif %}</h1>
 
-	{% if session_get('error') %}
-	<div class="alert alert-danger">{{session_get('error')}}</div>
-	{% endif %}
+<div class="container pad-section-lg record-page">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>{% if jam %}Jamming "{{model.name}}"{% else %}Upload track{% endif %}</h1><br>
+			{% if session_get('error') %}
+			<div class="alert alert-danger">{{session_get('error')}}</div>
+			{% endif %}
 
-	{% if session_get('message') %}
-	<div class="alert alert-success">{{session_get('message')}}</div>
-	{% endif %}
+			{% if session_get('message') %}
+			<div class="alert alert-success">{{session_get('message')}}</div>
+			{% endif %}
 
-	{{BootstrapForm.open({'files': true, 'model': model, 'update': 'jam_track', 'store': 'create_track'})|raw}}
-	{{BootstrapForm.text('name', 'Track name')|raw}}
-	{{BootstrapForm.textarea('description', 'Description')|raw}}
-	{{BootstrapForm.input('file', 'file', 'Track file', {'accept':'audio/*'})|raw}}
-	<div class="block-help">Only MP3 is supported</div>
-	{{BootstrapForm.radios('instrument', 'Instrument', {
-		'Bass': 'Bass',
-		'Guitar': 'Guitar',
-		'Drum': 'Drum',
-		'Vocal': 'Vocal',
-		'Synth': 'Synth',
-		'Other': 'Other'
-	}, 'Bass')|raw}}
-	{{BootstrapForm.radios('permission', 'Permission', [
-		'Free to Jam',
-		'Ask to jam',
-		'No jam'
-	], 0)|raw}}
-	{{BootstrapForm.submit('Create')|raw}}
-	{{BootstrapForm.close()|raw}}
-
+			{{BootstrapForm.open({'files': true, 'model': model, 'update': 'jam_track', 'store': 'create_track'})|raw}}
+			{{BootstrapForm.text('name', 'Track name')|raw}}
+			{{BootstrapForm.textarea('description', 'Description')|raw}}
+			{{BootstrapForm.input('file', 'file', 'Track file', {'accept':'audio/*'})|raw}}
+			<div class="block-help">Only MP3 is supported</div>
+			{{BootstrapForm.radios('instrument', 'Instrument', {
+				'Bass': 'Bass',
+				'Guitar': 'Guitar',
+				'Drum': 'Drum',
+				'Vocal': 'Vocal',
+				'Synth': 'Synth',
+				'Other': 'Other'
+			}, 'Bass')|raw}}
+			{{BootstrapForm.radios('permission', 'Permission', [
+				'Free to Jam',
+				'Ask to jam',
+				'No jam'
+			], 0)|raw}}
+			{{BootstrapForm.submit('Create')|raw}}
+			{{BootstrapForm.close()|raw}}
+		</div>
+	</div>
 </div>
-<br>
 {% endblock %}
