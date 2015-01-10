@@ -1,4 +1,5 @@
 {% extends 'base.twig' %}
+{% import "trackmacro.twig" as trackm %}
 
 {% block title %}{{track.name}}{% endblock %}
 
@@ -7,28 +8,6 @@
 		<div class="row">
 			<div class="col-sm-12">
 				{% include 'track-main.twig' %}
-				<!-- <h1 class="title">{{track.name}}</h1>
-				<div class="track">
-					<div class="player">
-						<p id="player"></p>
-						<a href="#" id="play">play</a>
-						<a href="#" id="stop">stop</a>
-					</div>
-					<div class="social clearfix">
-						<button type="button" class="btn btn-default btn-xs like pull-left">Like!</button>
-						<button type="button" class="btn btn-default btn-xs share pull-left">Share!</button>
-						<button type="button" class="btn btn-default btn-xs subscribe pull-left">Subscribe!</button>
-						{% if track.permission == 0 %}
-						<a href="/t/{{track.id}}/jam" class="btn btn-default jam pull-right">JAM</a>
-						{% endif %}
-						{% if track.user == auth_user().id %}
-						<a href="/t/{{track.id}}/edit" class="btn btn-default pull-right">Edit</a>
-						{% endif %}
-					</div>
-					<div class="description">
-						<p>{{track.description}}</p>
-					</div>
-				</div> -->
 			</div>
 		</div>
 
@@ -45,7 +24,7 @@
 			<div class="col-sm-4">
 
 				<h2>Previous Version</h2>
-				{% include 'track-list-xs.twig' %}
+				{{trackm.display_track(track.parents().first())}}
 				<div class="txt-center" style="margin-top:10px; margin-bottom:10px">
 					<a href="" class="btn btn-primary">see more &raquo;</a>
 				</div>
@@ -59,17 +38,4 @@
 			</div>
 		</div>
 	</div>
-{% endblock %}
-
-{% block script %}
-	<script>
-	var tracks = [
-		{% for item in track.parents %}
-		[{{item.file|json_encode|raw}}, {{item.shift|json_encode|raw}}],
-		{% endfor %}
-		[{{track.file|json_encode|raw}}, {{track.shift|json_encode|raw}}],
-	];
-	var show_data = false;
-	</script>
-	<script src="/js/player.js"></script>
 {% endblock %}

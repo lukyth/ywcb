@@ -21,7 +21,7 @@ $('[data-player]').each(function(){
 		players.push(player);
 	});
 
-	$('<div class="play">Play</div>').click(function(){
+	var play = function(){
 		players.forEach(function(item){
 			item.pause();
 			item.currentTime = Math.max(0, -item._shift);
@@ -34,16 +34,19 @@ $('[data-player]').each(function(){
 				item.play();
 			}
 		});
-		return false;
-	}).appendTo(node);
-
-	$('<div class="stop">Stop</div>').click(function(){
+	};
+	var pause = function(){
 		players.forEach(function(item){
 			clearTimeout(item.timeout);
 			item.pause();
 		});
-		return false;
-	}).appendTo(node);
+	};
+	var isPlaying = false;
+
+	$('<img src="/img/play.svg" style="width:100%;">').css("cursor", "pointer").appendTo(this).click(function(){
+		isPlaying = !isPlaying;
+		isPlaying ? play() : pause();
+	});
 });
 
 
