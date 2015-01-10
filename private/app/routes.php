@@ -13,9 +13,7 @@
 
 Route::get('/', function()
 {
-	return Twig::render('hello', array(
-		'group' => 'B'
-	));
+	return Twig::render('index');
 });
 
 Route::match(array('GET', 'POST'), '/login', array('as' => 'login', 'uses' => 'LoginController@login'));
