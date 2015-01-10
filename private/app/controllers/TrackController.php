@@ -78,14 +78,16 @@ class TrackController extends BaseController {
 		}
 	}
 
-	public function rec($id){
-		try{
-			return View::make('rec', array(
-				'track' => Track::findOrFail($id),
-			));
-		}catch(Illuminate\Database\Eloquent\ModelNotFoundException $e){
-			App::abort(404);
-		}
+	public function rec($id=null){
+		return View::make('rec', array(
+			'track' => Track::find($id),
+		));
+	}
+
+	public function mix($id=null){
+		return View::make('mix', array(
+			'track' => Track::find($id),
+		));
 	}
 
 	public function edit($id){

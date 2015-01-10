@@ -6,7 +6,11 @@
 	<div class="container pad-section-lg record-page">
 		<div class="row">
 			<div class="col-sm-12">
-				<h1>Jamming "{{track.name}}"</h1>
+				<h1>{% if jam %}
+Jamming {{model.name}}
+{% else %}
+Upload track
+{% endif %}</h1>
 				<div class="txt-center">
 					<br>
 					<img class="img-responsive img-center img-hover hidden-xs" src="/img/rec.svg" style="width:200px">
@@ -24,7 +28,7 @@
 					's <a href="/t/{{track.parents().first().id}}">JAM.</a>
 					{% endif %}
 					<br><br>
-					<a href="/mix" class="btn btn-primary">Next Step</a>
+					<a href="{% if track %}/t/{{track.id}}/mix{%else%}/track/mix{%endif%}" class="btn btn-primary">Next Step</a>
 					<br><br>
 				</div>
 			</div>
