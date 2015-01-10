@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Phase1 extends Migration {
+class Phase1Migration extends Migration {
 
 	/**
 	 * Run the migrations.
