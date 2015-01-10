@@ -15,7 +15,7 @@
 		by
 
 		<a href="/u/{{track.user}}" class="mockup-avt-xs" style="background-image: url({{track.user().first().gravatar()}}); background-size: contain;"></a>
-		{% for parent in track.parents.limit(3) %}
+		{% for parent in track.parents|slice(0, 3) %}
 		<a href="/u/{{parent.user}}" class="mockup-avt-xs" style="background-image: url({{parent.user().first().gravatar()}}); background-size: contain;"></a>
 		{% endfor %}
 	</div>
